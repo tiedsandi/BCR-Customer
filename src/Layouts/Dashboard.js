@@ -1,24 +1,23 @@
-import { Grid, Typography } from '@mui/material';
-import React from 'react'
-import axios from 'axios';
-
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchCars } from '../redux/actions/carsActions';
+import { Grid } from '@mui/material';
 import { AppContext } from '../App';
-import CardCar from '../components/CardCar';
+import CardCar from '../containers/CardCar';
+
+
 
 const Dashboard = () => {
-    const { show, setCars, cars, } = React.useContext(AppContext);
+    const { show } = React.useContext(AppContext);
 
-    const getCars = async () => {
-        const res = await axios.get(
-            "https://625bcc2d50128c57020785c4.mockapi.io/binarcar/mobil"
-        )
-        console.log(res.data);
-        setCars(res.data)
-    }
+    const cars = useSelector((state) => state.allCars.cars);
+    const dispatch = useDispatch();
 
-    React.useEffect(() => {
-        getCars()
-    }, [])
+    useEffect(() => {
+        dispatch(fetchCars());
+    }, []);
+
+    console.log("cars : ", cars);
 
     return (
         <>
@@ -32,11 +31,7 @@ const Dashboard = () => {
                         spacing={2}
                     >
                         {
-                            cars.map((car) => {
-                                return (
-                                    <CardCar car={car} />
-                                )
-                            })
+                            <CardCar />
                         }
                     </Grid>
                 )

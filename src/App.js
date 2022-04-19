@@ -1,24 +1,22 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './index.css';
-import Header from './components/Header';
+import Header from './containers/Header';
 import { ThemeProvider } from '@mui/material';
 import { Theme } from './Theme';
 import Dashboard from './Layouts/Dashboard';
 import Detail from './Layouts/Detail';
 import Pembayaran from './Layouts/Pembayaran';
-import Footer from './components/Footer';
+import Footer from './containers/Footer';
 
 // use context
 export const AppContext = React.createContext();
 
 function App() {
     const [show, setShow] = React.useState(true);
-    const [cars, setCars] = React.useState([]);
-    const [category, setCategory] = React.useState('');
     return (
         <ThemeProvider theme={Theme}>
-            <AppContext.Provider value={{ show, setShow, cars, setCars, category, setCategory }}>
+            <AppContext.Provider value={{ show, setShow }}>
                 <Router>
                     <Header />
                     <Routes>

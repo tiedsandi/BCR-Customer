@@ -1,6 +1,6 @@
 import { Avatar, Grid, Stack, Typography } from '@mui/material'
-import Logo from './Logo'
-import NavLink from './NavLink'
+import Logo from '../components/Logo'
+import NavLink from '../components/NavLink'
 
 const Footer = () => {
     return (

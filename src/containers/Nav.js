@@ -1,7 +1,7 @@
 import React from 'react'
 import { AppBar, Box, Typography, Link, Button } from '@mui/material'
-import Logo from './Logo'
-import NavLink from './NavLink'
+import Logo from '../components/Logo'
+import NavLink from '../components/NavLink'
 
 const Nav = () => {
     return (
