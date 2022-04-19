@@ -1,11 +1,37 @@
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import './index.css';
+import Header from './components/Header';
+import { ThemeProvider } from '@mui/material';
+import { Theme } from './Theme';
+import Dashboard from './Layouts/Dashboard';
+import Detail from './Layouts/Detail';
+import Pembayaran from './Layouts/Pembayaran';
+import Footer from './components/Footer';
+
+// use context
+export const AppContext = React.createContext();
 
 function App() {
-  return (
-    <div className="App">
-
-    </div>
-  );
+    const [show, setShow] = React.useState(true);
+    const [cars, setCars] = React.useState([]);
+    const [category, setCategory] = React.useState('');
+    return (
+        <ThemeProvider theme={Theme}>
+            <AppContext.Provider value={{ show, setShow, cars, setCars, category, setCategory }}>
+                <Router>
+                    <Header />
+                    <Routes>
+                        <Route path="/" element={<Dashboard />} />
+                        <Route path="/detail/:id" element={<Detail />} />
+                        <Route path="/pembayaran/:id" element={<Pembayaran />} />
+                        <Route path="*" element={<div>404</div>} />
+                    </Routes>
+                    <Footer />
+                </Router>
+            </AppContext.Provider>
+        </ThemeProvider>
+    );
 }
 
 export default App;
