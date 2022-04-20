@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './index.css';
 import Header from './containers/Header';
-import { ThemeProvider } from '@mui/material';
+import { Box, ThemeProvider } from '@mui/material';
 import { Theme } from './Theme';
 import Dashboard from './Layouts/Dashboard';
 import Detail from './Layouts/Detail';
@@ -19,12 +19,14 @@ function App() {
             <AppContext.Provider value={{ show, setShow }}>
                 <Router>
                     <Header />
-                    <Routes>
-                        <Route path="/" element={<Dashboard />} />
-                        <Route path="/detail/:id" element={<Detail />} />
-                        <Route path="/pembayaran/:id" element={<Pembayaran />} />
-                        <Route path="*" element={<div>404</div>} />
-                    </Routes>
+                    <Box sx={{ marginX: '11.2rem' }}>
+                        <Routes>
+                            <Route path="/" element={<Dashboard />} />
+                            <Route path="/detail/:id" element={<Detail />} />
+                            <Route path="/pembayaran/:id" element={<Pembayaran />} />
+                            <Route path="*" element={<div>404</div>} />
+                        </Routes>
+                    </Box>
                     <Footer />
                 </Router>
             </AppContext.Provider>

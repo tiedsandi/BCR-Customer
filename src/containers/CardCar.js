@@ -1,4 +1,4 @@
-import { Card, CardContent, CardMedia, Grid, Typography } from '@mui/material'
+import { Button, Card, CardActions, CardContent, CardMedia, Grid, Typography } from '@mui/material'
 import React from 'react'
 import { Calendar, Gear, People } from 'react-bootstrap-icons'
 import { useSelector } from 'react-redux'
@@ -21,7 +21,7 @@ const CardCar = () => {
                         alt="Car"
                         image={car.image}
                     />
-                    <CardContent>
+                    <CardContent sx={{ minHeight: '15rem' }}>
                         <Typography>
                             {car.name} / {car.category}
                         </Typography>
@@ -77,11 +77,26 @@ const CardCar = () => {
                             {car.time}
                         </Typography>
                     </CardContent>
-                    {/* <CardBody
-                    car={car}
-                /> */}
-                    {/* button full color success */}
-                    {/* <CarButton car={car} /> */}
+                    <CardActions>
+                        <Button
+                            variant="contained"
+                            color="success"
+                            size="large"
+                            sx={{
+                                width: '100%',
+                                height: '100%',
+                                display: 'flex',
+                                flexDirection: 'row',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                padding: '1rem',
+                                borderRadius: '10px',
+                            }}
+                            href={`/detail/${car.id}`}
+                        >
+                            Detail Rental
+                        </Button>
+                    </CardActions>
                 </Card>
             </Grid>
 

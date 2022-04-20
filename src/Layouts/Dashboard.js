@@ -15,7 +15,7 @@ const Dashboard = () => {
 
     useEffect(() => {
         dispatch(fetchCars());
-    }, []);
+    });
 
     console.log("cars : ", cars);
 
@@ -27,7 +27,6 @@ const Dashboard = () => {
                         container
                         mx={-4}
                         display='flex'
-                        justifyContent='center'
                         spacing={2}
                     >
                         {
