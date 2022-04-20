@@ -7,7 +7,7 @@ const CardCar = () => {
     const cars = useSelector((state) => state.allCars.cars);
     const renderList = cars.map((car) => {
         return (
-            <Grid item>
+            <Grid item key={car.id}>
                 <Card
                     sx={{
                         width: '480px',

@@ -1,10 +1,11 @@
 import { Button, FormControl, Grid, MenuItem, TextField, Typography } from '@mui/material'
 import React from 'react'
-import { AppContext } from '../App'
-
+import { useSelector, useDispatch } from 'react-redux';
+import { setShow } from '../redux/actions/carsActions';
 
 const Search = () => {
-    const { show, setShow } = React.useContext(AppContext)
+    const show = useSelector((state) => state.show.show)
+    const dispatch = useDispatch()
 
     return (
         <Grid position={'absolute'}
@@ -79,9 +80,7 @@ const Search = () => {
                                 variant="contained"
                                 color="success"
                                 fullWidth
-                                onClick={() => {
-                                    setShow(false)
-                                }}
+                                onClick={() => dispatch(setShow(false))}
                                 sx={{ position: 'absolute', bottom: '0', height: '3.5rem' }}
                             >
                                 <Typography color={'white'} sx={{ fontWeight: 'bold', fontSize: '0.9rem' }}
@@ -93,9 +92,6 @@ const Search = () => {
                                 variant="contained"
                                 color="primary"
                                 fullWidth
-                                onClick={() => {
-                                    setShow(false)
-                                }}
                                 sx={{ position: 'absolute', bottom: '0', height: '3.5rem' }}
                             >
                                 <Typography color={'white'} sx={{ fontWeight: 'bold', fontSize: '0.9rem' }}

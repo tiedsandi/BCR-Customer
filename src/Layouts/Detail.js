@@ -1,28 +1,27 @@
 import React from 'react'
-import { AppContext } from '../App';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import {
     fetchCar,
 } from '../redux/actions/carsActions';
-import { Button, Typography, Box, Grid, Card, CardMedia, CardContent, CardActions, Collapse } from '@mui/material';
+import { Button, Typography, Box, Grid, Card, CardMedia, CardContent, CardActions } from '@mui/material';
 import { Calendar, Gear, People } from 'react-bootstrap-icons';
+import { setShow } from '../redux/actions/carsActions';
 
 
 const Detail = () => {
     const { id } = useParams();
     let car = useSelector(state => state.selectedCar);
     const dispatch = useDispatch();
-    const { setShow } = React.useContext(AppContext);
 
     React.useEffect(() => {
-        setShow(false)
+        dispatch(setShow(false));
         if (id && id !== 'undefined') dispatch(fetchCar(id));
-    }, [id, dispatch, setShow]);
+    }, [id]);
 
 
     return (
-        <Grid container="true" spacing={2} mb="5rem">
+        <Grid container spacing={2} mb="5rem">
             <Grid item lg={7}>
                 <Box
                     sx={{

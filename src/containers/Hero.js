@@ -1,13 +1,13 @@
 import { Box, Grid, Typography } from '@mui/material'
 import React from 'react'
-import { AppContext } from '../App'
+import { useSelector } from 'react-redux';
 
 const Hero = () => {
-    const { show } = React.useContext(AppContext)
+    const show = useSelector((state) => state.show.show);
+
     return (
         <>
             {show && (
-
                 <Grid container spacing={0}>
                     <Grid item md={12} lg={6}
                         sx={{

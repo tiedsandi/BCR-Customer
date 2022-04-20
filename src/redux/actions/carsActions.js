@@ -31,8 +31,16 @@ export const selectedCar = (car) => {
     };
 }
 
-export const removeSelectedCar = () => {
+export const setShow = (show) => {
     return {
-        type: ActionTypes.REMOVE_SELECTED_CAR
+        type: ActionTypes.SET_SHOW,
+        payload: show
+    };
+}
+
+export const setPage = (page) => {
+    return {
+        type: ActionTypes.SET_PAGE,
+        payload: page
     };
 }
