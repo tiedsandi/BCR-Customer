@@ -4,8 +4,7 @@ import { Calendar, Gear, People } from 'react-bootstrap-icons'
 import { useSelector } from 'react-redux'
 
 const CardCar = () => {
-    const cars = useSelector((state) => state.allCars.cars);
-    const cars1 = useSelector((state) => state.allCars.cars1);
+    const cars = useSelector((state) => state.result.result);
     const renderList = cars.map((car) => {
         return (
 
@@ -33,7 +32,7 @@ const CardCar = () => {
                             {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(car.price)} / hari
                         </Typography>
                         <Typography variant='body2' >
-                            {cars1[car.id + 1].description}
+                            {car.description}
                         </Typography>
                         <Typography variant="p" color="text.secondary"
                             sx={{
@@ -47,7 +46,7 @@ const CardCar = () => {
                                 size={20}
                                 color="primary"
                                 style={{ marginRight: '.5rem' }}
-                            /> {cars1[car.id + 1].penumpang}
+                            /> {car.penumpang} Penumpang
                         </Typography>
                         <Typography variant="p" color="text.secondary"
                             sx={{
@@ -63,7 +62,7 @@ const CardCar = () => {
                                 color="primary"
                                 style={{ marginRight: '.5rem' }}
                             />
-                            {cars1[car.id + 1].transmisi}
+                            {car.transmisi}
                         </Typography>
                         <Typography variant="p" color="text.secondary"
                             sx={{
@@ -78,7 +77,7 @@ const CardCar = () => {
                                 color="primary"
                                 style={{ marginRight: '.5rem' }}
                             />
-                            {cars1[car.id + 1].time}
+                            {car.year} Tahun
                         </Typography>
                     </CardContent>
                     <CardActions>

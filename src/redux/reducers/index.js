@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
-import { carsReducer, selectedCarReducer, showReducer, searchStatusReducer, selectedCarReducer1 } from './carsReducer';
+import { carsReducer, selectedCarReducer, showReducer, filterReducer, buttonReducer } from './carsReducer';
 
 const rootReducer = combineReducers({
     allCars: carsReducer,
     selectedCar: selectedCarReducer,
-    selectedCar1: selectedCarReducer1,
     show: showReducer,
-    statusSearch: searchStatusReducer,
+    result: filterReducer,
+    button: buttonReducer,
 });
 
 export default rootReducer;

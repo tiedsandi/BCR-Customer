@@ -1,9 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import {
-    fetchCar, fetchCar1,
-} from '../redux/actions/carsActions';
+import { fetchCar } from '../redux/actions/carsActions';
 import { Button, Typography, Box, Grid, Card, CardMedia, CardContent, CardActions } from '@mui/material';
 import { Calendar, Gear, People } from 'react-bootstrap-icons';
 import { setShow } from '../redux/actions/carsActions';
@@ -12,14 +10,12 @@ import { setShow } from '../redux/actions/carsActions';
 const Detail = () => {
     const { id } = useParams();
     let car = useSelector(state => state.selectedCar);
-    let car1 = useSelector(state => state.selectedCar1);
     const dispatch = useDispatch();
 
     React.useEffect(() => {
         dispatch(setShow(false));
         if (id && id !== 'undefined') {
             dispatch(fetchCar(id))
-            dispatch(fetchCar1(id));
         }
     }, [dispatch, id]);
 
@@ -143,7 +139,7 @@ const Detail = () => {
                                         size={20}
                                         color="primary"
                                         style={{ marginRight: '.5rem' }}
-                                    /> {car1.penumpang}
+                                    /> {car.penumpang}
                                 </Typography>
                                 <Typography mr="1rem" variant="p" color="text.secondary"
                                     sx={{
@@ -159,7 +155,7 @@ const Detail = () => {
                                         color="primary"
                                         style={{ marginRight: '.5rem' }}
                                     />
-                                    {car1.transmisi}
+                                    {car.transmisi}
                                 </Typography>
                                 <Typography mr="1rem" variant="p" color="text.secondary"
                                     sx={{
@@ -174,7 +170,7 @@ const Detail = () => {
                                         color="primary"
                                         style={{ marginRight: '.5rem' }}
                                     />
-                                    {car1.time}
+                                    {car.year}
                                 </Typography>
 
                             </Box>
