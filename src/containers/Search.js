@@ -6,9 +6,17 @@ import { setShow } from '../redux/actions/carsActions';
 const Search = () => {
     const show = useSelector((state) => state.show.show)
     const dispatch = useDispatch()
+    const cars1 = useSelector((state) => state.allCars.cars1);
+    // const cars = useSelector((state) => state.allCars.cars);
+
+    const transmisi = [...new Set(cars1.map((car) => car.transmisi))];
+    const tipe = [{ label: 'small', value: 'small' }, { label: 'medium', value: 'medium' }, { label: 'large', value: 'large' }];
+
+
 
     return (
-        <Grid position={'absolute'}
+        <Grid
+            position={'absolute'}
             container
             width={'80%'}
             pb={'2rem'}
@@ -35,27 +43,53 @@ const Search = () => {
 
             <Grid item xs={3}>
                 <FormControl fullWidth>
-                    <Typography paragraph>Tipe Driver</Typography>
-                    <TextField select >
-                        <MenuItem value={'Dengan Sopir'}>Dengan Sopir</MenuItem>
-                        <MenuItem value={'Tanpa Sopir'}>Tanpa Sopir</MenuItem>
+                    <Typography paragraph>Tipe Mesin</Typography>
+                    <TextField
+                        select
+                        defaultValue={'Semua'}
+                    >
+                        <MenuItem disabled value="">
+                            <em>Pilih Jenis Mesin</em>
+                        </MenuItem>
+                        <MenuItem value={'Semua'}>Semua</MenuItem>
+                        {/* Menu item from array transmisi*/}
+                        {transmisi.map((transmisi) => (
+                            <MenuItem key={transmisi} value={transmisi}>
+                                {transmisi}
+                            </MenuItem>
+                        ))}
                     </TextField>
                 </FormControl>
             </Grid>
+
+            <Grid item xs={3}>
+                <FormControl fullWidth>
+                    <Typography paragraph>Tipe Mobil</Typography>
+                    <TextField
+                        select
+                        defaultValue={'Semua'}
+                    >
+                        <MenuItem disabled value="">
+                            <em>Pilih Tipe Mobil</em>
+                        </MenuItem>
+
+                        <MenuItem value={'Semua'}>Semua</MenuItem>
+                        {/* Menu item from array transmisi*/}
+                        {tipe.map((tipe) => (
+                            <MenuItem key={tipe.value} value={tipe.value}>
+                                {tipe.label}
+                            </MenuItem>
+                        ))}
+                    </TextField>
+
+                </FormControl>
+
+            </Grid>
+
             <Grid item xs={3}>
                 <FormControl fullWidth>
                     <Typography paragraph>Tanggal</Typography>
                     <TextField type={'date'} placeholder="Pilih Tanggal" />
-                </FormControl>
-
-            </Grid>
-
-
-            <Grid item xs={3}>
-                <FormControl fullWidth>
-                    <Typography paragraph>Waktu Jemput/Ambil</Typography>
-                    <TextField type={'time'} />
-
                 </FormControl>
 
             </Grid>
@@ -80,7 +114,10 @@ const Search = () => {
                                 variant="contained"
                                 color="success"
                                 fullWidth
-                                onClick={() => dispatch(setShow(false))}
+                                onClick={() => {
+                                    dispatch(setShow(false))
+                                    // handleClick()
+                                }}
                                 sx={{ position: 'absolute', bottom: '0', height: '3.5rem' }}
                             >
                                 <Typography color={'white'} sx={{ fontWeight: 'bold', fontSize: '0.9rem' }}
@@ -92,20 +129,17 @@ const Search = () => {
                                 variant="contained"
                                 color="primary"
                                 fullWidth
+                                onClick={() => {
+                                    // handleClick()
+                                }}
                                 sx={{ position: 'absolute', bottom: '0', height: '3.5rem' }}
                             >
                                 <Typography color={'white'} sx={{ fontWeight: 'bold', fontSize: '0.9rem' }}
                                 >Edit</Typography>
                             </Button>
                     }
-
-
                 </Grid>
-
-
             </Grid>
-
-
         </Grid>
     )
 }

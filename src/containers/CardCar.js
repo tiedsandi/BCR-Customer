@@ -5,8 +5,10 @@ import { useSelector } from 'react-redux'
 
 const CardCar = () => {
     const cars = useSelector((state) => state.allCars.cars);
+    const cars1 = useSelector((state) => state.allCars.cars1);
     const renderList = cars.map((car) => {
         return (
+
             <Grid item key={car.id}>
                 <Card
                     sx={{
@@ -19,6 +21,8 @@ const CardCar = () => {
                     <CardMedia
                         component="img"
                         alt="Car"
+                        height="300px"
+
                         image={car.image}
                     />
                     <CardContent sx={{ minHeight: '15rem' }}>
@@ -29,7 +33,7 @@ const CardCar = () => {
                             {new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR' }).format(car.price)} / hari
                         </Typography>
                         <Typography variant='body2' >
-                            {car.description}
+                            {cars1[car.id + 1].description}
                         </Typography>
                         <Typography variant="p" color="text.secondary"
                             sx={{
@@ -43,7 +47,7 @@ const CardCar = () => {
                                 size={20}
                                 color="primary"
                                 style={{ marginRight: '.5rem' }}
-                            /> {car.penumpang}
+                            /> {cars1[car.id + 1].penumpang}
                         </Typography>
                         <Typography variant="p" color="text.secondary"
                             sx={{
@@ -59,7 +63,7 @@ const CardCar = () => {
                                 color="primary"
                                 style={{ marginRight: '.5rem' }}
                             />
-                            {car.transmisi}
+                            {cars1[car.id + 1].transmisi}
                         </Typography>
                         <Typography variant="p" color="text.secondary"
                             sx={{
@@ -74,27 +78,22 @@ const CardCar = () => {
                                 color="primary"
                                 style={{ marginRight: '.5rem' }}
                             />
-                            {car.time}
+                            {cars1[car.id + 1].time}
                         </Typography>
                     </CardContent>
                     <CardActions>
                         <Button
                             variant="contained"
                             color="success"
-                            size="large"
                             sx={{
                                 width: '100%',
-                                height: '100%',
-                                display: 'flex',
-                                flexDirection: 'row',
-                                justifyContent: 'center',
-                                alignItems: 'center',
                                 padding: '1rem',
                                 borderRadius: '10px',
                             }}
                             href={`/detail/${car.id}`}
                         >
-                            Detail Rental
+                            <Typography color={'white'} sx={{ fontWeight: 'bold', fontSize: '0.9rem' }}
+                            >Detail Rental</Typography>
                         </Button>
                     </CardActions>
                 </Card>

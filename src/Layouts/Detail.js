@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import {
-    fetchCar,
+    fetchCar, fetchCar1,
 } from '../redux/actions/carsActions';
 import { Button, Typography, Box, Grid, Card, CardMedia, CardContent, CardActions } from '@mui/material';
 import { Calendar, Gear, People } from 'react-bootstrap-icons';
@@ -12,13 +12,16 @@ import { setShow } from '../redux/actions/carsActions';
 const Detail = () => {
     const { id } = useParams();
     let car = useSelector(state => state.selectedCar);
+    let car1 = useSelector(state => state.selectedCar1);
     const dispatch = useDispatch();
 
     React.useEffect(() => {
         dispatch(setShow(false));
-        if (id && id !== 'undefined') dispatch(fetchCar(id));
-    }, [id]);
-
+        if (id && id !== 'undefined') {
+            dispatch(fetchCar(id))
+            dispatch(fetchCar1(id));
+        }
+    }, [dispatch, id]);
 
     return (
         <Grid container spacing={2} mb="5rem">
@@ -92,7 +95,7 @@ const Detail = () => {
                         variant="contained"
                         color="success"
                         sx={{
-                            width: 'max-content',
+                            // width: 'max-content',
                             height: '3rem',
                             marginTop: '2rem',
                             borderRadius: '8px',
@@ -101,7 +104,8 @@ const Detail = () => {
                             bottom: '0',
                         }}
                     >
-                        Lanjutkan Pembayaran
+                        <Typography color={'white'} sx={{ fontWeight: 'bold', fontSize: '0.9rem' }}
+                        >Lanjutkan Pembayaran</Typography>
                     </Button>
                 </Box>
             </Grid>
@@ -139,7 +143,7 @@ const Detail = () => {
                                         size={20}
                                         color="primary"
                                         style={{ marginRight: '.5rem' }}
-                                    /> {car.penumpang}
+                                    /> {car1.penumpang}
                                 </Typography>
                                 <Typography mr="1rem" variant="p" color="text.secondary"
                                     sx={{
@@ -155,7 +159,7 @@ const Detail = () => {
                                         color="primary"
                                         style={{ marginRight: '.5rem' }}
                                     />
-                                    {car.transmisi}
+                                    {car1.transmisi}
                                 </Typography>
                                 <Typography mr="1rem" variant="p" color="text.secondary"
                                     sx={{
@@ -170,7 +174,7 @@ const Detail = () => {
                                         color="primary"
                                         style={{ marginRight: '.5rem' }}
                                     />
-                                    {car.time}
+                                    {car1.time}
                                 </Typography>
 
                             </Box>
@@ -189,21 +193,16 @@ const Detail = () => {
                             <Button
                                 variant="contained"
                                 color="success"
-                                size="large"
                                 sx={{
                                     width: '100%',
-                                    height: '100%',
-                                    display: 'flex',
-                                    flexDirection: 'row',
-                                    justifyContent: 'center',
-                                    alignItems: 'center',
                                     padding: '1rem',
                                     borderRadius: '10px',
 
                                 }}
-                                href={`/detail/${car.id}`}
+                                href={`/pembayaran/${car.id}`}
                             >
-                                Detail Rental
+                                <Typography color={'white'} sx={{ fontWeight: 'bold', fontSize: '0.9rem' }}
+                                >Detail Rental</Typography>
                             </Button>
                         </CardActions>
                     </Card>
