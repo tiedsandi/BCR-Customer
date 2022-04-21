@@ -2,15 +2,13 @@ import { ActionTypes } from "../constants/action-types";
 const initialState = {
     cars: [],
     result: [],
-    button: '',
+    // button: '',
     show: true,
     // searchStatus: true,
 };
 
 export const carsReducer = (state = initialState, { type, payload }) => {
     switch (type) {
-        case ActionTypes.SET_CARS:
-            return { ...state, cars: payload, };
         case ActionTypes.FETCH_CARS:
             return { ...state, cars: payload, };
         default:
@@ -26,7 +24,6 @@ export const selectedCarReducer = (state = initialState, { type, payload }) => {
             return state;
     }
 }
-
 
 export const showReducer = (state = initialState, { type, payload }) => {
     switch (type) {
@@ -46,14 +43,14 @@ export const filterReducer = (state = initialState, { type, payload }) => {
     }
 }
 
-export const buttonReducer = (state = initialState, { type, payload }) => {
-    switch (type) {
-        case ActionTypes.SET_BUTTON:
-            return { ...state, button: payload };
-        default:
-            return state;
-    }
-}
+// export const buttonReducer = (state = initialState, { type, payload }) => {
+//     switch (type) {
+//         case ActionTypes.SET_BUTTON:
+//             return { ...state, button: payload };
+//         default:
+//             return state;
+//     }
+// }
 
 //Another way to do it
 // export const productReducer = (state = initialState, action) => {

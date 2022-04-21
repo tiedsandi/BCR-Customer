@@ -1,8 +1,8 @@
-import apiTambahan from '../../apis/apiTambahan';
+import apiBinar from '../../apis/apiBinar';
 import { ActionTypes } from "../constants/action-types";
 
 export const fetchCars = () => async (dispatch) => {
-    const response = await apiTambahan.get("/mobil");
+    const response = await apiBinar.get("/mobil");
     dispatch({
         type: ActionTypes.FETCH_CARS,
         payload: response.data
@@ -14,7 +14,7 @@ export const fetchCars = () => async (dispatch) => {
 };
 
 export const fetchCar = (id) => async (dispatch) => {
-    const response = await apiTambahan.get(`/mobil/${id}`);
+    const response = await apiBinar.get(`/mobil/${id}`);
     dispatch({
         type: ActionTypes.SELECTED_CAR,
         payload: response.data
